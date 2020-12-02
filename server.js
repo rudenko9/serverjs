@@ -60,7 +60,39 @@ const server = http.createServer((request, response) => {
   response.end();
 });
 
-server.listen(8030, (error) => {
+
+server.listen(8030, (error) => { 
   if (error) console.log(error);
   else console.log('Server is running on http://localhost:8030');
 });
+
+
+
+// create the path 
+let filePath = path.join('public', req.url === '/' ? 'index.html' : req.url );
+
+//extention of file
+let extename = path.extname(filePath)
+
+// initial content type
+let contentType = 'text/html';
+
+//check extention and set content type
+switch (extname) {
+  case '.js':
+    contentType = 'text/javascript';
+    break;
+    case '.html':
+    contentType = 'text/html';
+    break;
+    case '.css':
+    contentType = 'text/css';
+    break;
+    case '.jpg':
+    contentType = 'image/jpg';
+    break;
+    case '.ico':
+    contentType = 'image/x-icon';
+    break;
+
+}
